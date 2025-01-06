@@ -163,9 +163,10 @@
       body: JSON.stringify(formJSON)
     })
     .then(response => response.json())
-    .then(data => {
+    then(data => {
       if (data.ok) {
-        alert('Order submitted successfully!');
+        // Redirect to message.html after successful submission
+        window.location.href = 'message.html'; // Redirect to your message page
       } else {
         alert('There was an error submitting the form.');
       }
