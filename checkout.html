@@ -66,7 +66,7 @@
             <h1 class="text-center">
                 CHECKOUT
             </h1>
-            <form class="row" method="POST" action="https://formspree.io/f/mqaagwkw">
+            <form class="row" id="checkoutForm">
                 <div class="col-md-7">
                 <div class="row">
                     <div class="col-md-6 py-3 py-md-0">
@@ -141,7 +141,41 @@
     
 
     
+    <script>
+  document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+    event.preventDefault();  // Prevent the default form submission
 
+    // Create a FormData object from the form
+    const formData = new FormData(event.target);
+
+    // Convert FormData to a JSON object
+    const formJSON = {};
+    formData.forEach((value, key) => {
+      formJSON[key] = value;
+    });
+
+    // Send the data as a JSON POST request to Formspree
+    fetch('https://formspree.io/f/mqaagwkw', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formJSON)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.ok) {
+        alert('Order submitted successfully!');
+      } else {
+        alert('There was an error submitting the form.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('There was an error submitting the form.');
+    });
+  });
+</script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
