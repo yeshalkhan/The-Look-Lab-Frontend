@@ -130,7 +130,7 @@
                             <p class="detail">Delivery Fee : 200</p>
                             <h4>Total : Rs. 2675.00</h4>
                             </div>
-                        <div id="btntable" class="text-center" style="margin-bottom: 50px;"><button type="submit" href="message.html" class="btn btn-secondary">Place Order</button></div>
+                        <div id="btntable" class="text-center" style="margin-bottom: 50px;"><a href="message.html" class="btn btn-secondary">Place Order</a></div>
 
                 </form>
             </div>
@@ -139,44 +139,6 @@
         </div>
         <!-- checkout content -->
     
-
-    
-    <script>
-  document.getElementById('checkoutForm').addEventListener('submit', function(event) {
-    event.preventDefault();  // Prevent the default form submission
-
-    // Create a FormData object from the form
-    const formData = new FormData(event.target);
-
-    // Convert FormData to a JSON object
-    const formJSON = {};
-    formData.forEach((value, key) => {
-      formJSON[key] = value;
-    });
-
-    // Send the data as a JSON POST request to Formspree
-    fetch('https://formspree.io/f/mqaagwkw', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formJSON)
-    })
-    .then(response => response.json())
-    then(data => {
-      if (data.ok) {
-        // Redirect to message.html after successful submission
-        window.location.href = 'message.html'; // Redirect to your message page
-      } else {
-        alert('There was an error submitting the form.');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('There was an error submitting the form.');
-    });
-  });
-</script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
